@@ -1,5 +1,6 @@
 const express = require("express")
 const app = express()
+
 const PORT = process.env.PORT || 3000
 
 const bodyParser = require("body-parser")
@@ -40,14 +41,16 @@ app.post("/shorten", async function (req, res) {
 app.get("/:shortUrlCode", async function (req, res) {
 	try {
 		const shortUrlCode = req.params.shortUrlCode
-		const data = await readJsonFile(`${__dirname}/public/data.json`);
-		if (!shortUrlCode) return res.status(400).json("badRequest");
-        const urlExits = checkShortUrlCodeExists(data, shortUrlCode);
-		if (!urlExits) return res.status(404).json("invalid urlCode");
-        res.redirect(301,urlExits.longUrl);
+		if (!shortUrlCode) return res.status(400).json("badRequest")
+		const data = await readJsonFile(`${__dirname}/public/data.json`)
+		const urlExits = checkShortUrlCodeExists(data, shortUrlCode)
+		if (!urlExits) return res.status(404).json("invalid urlCode")
+		res.redirect(301, urlExits.longUrl)
 	} catch (err) {
 		return res.status(500).json("internal Server Error: " + err.message)
 	}
 })
 
 app.listen(PORT, () => console.log(`server started, listening PORT ${PORT}`))
+
+module.exports = { app }
