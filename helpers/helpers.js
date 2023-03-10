@@ -4,12 +4,8 @@ function checkUrlExists(data, url) {
     if (data && url) {
         const existedUrlObj = data.find(obj => obj.longUrl === url)
         if (existedUrlObj) {
-            return {
-                message: "this url already exists",
-                ...existedUrlObj
-            }
+            return existedUrlObj
         }
-        return;
     }
 }
 function checkShortUrlCodeExists(data, shortUrlCode) {
@@ -18,7 +14,6 @@ function checkShortUrlCodeExists(data, shortUrlCode) {
         if (existedUrlObj) {
             return existedUrlObj;
         };
-        return;
     }
 }
 function createUrlObject(longUrl, shortCode) {
