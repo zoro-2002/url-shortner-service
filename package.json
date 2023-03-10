@@ -4,7 +4,7 @@
   "description": "convert long urls to short urls",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha  test/*.test.js",
     "start": "nodemon server.js"
   },
   "author": "prem",
@@ -17,7 +17,10 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
+    "chai": "^4.3.7",
     "eslint": "^8.35.0",
-    "nodemon": "^2.0.21"
+    "mocha": "^10.2.0",
+    "nodemon": "^2.0.21",
+    "supertest": "^6.3.3"
   }
 }
